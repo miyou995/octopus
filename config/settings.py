@@ -6,11 +6,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 
-SECRET_KEY = config("SECRET_KEY", default="django-insecure$sunlab.settings.local")
+SECRET_KEY = SECRET_KEY = 'dqscsqcqscqscssqabzzzxc1d@#2kb^*&t!6f(-^5cgj42n5=(lih!j6$ivxwjnb!'
 
-DEBUG = config("DEBUG", default=True, cast=bool)
+DEBUG = True
 
-ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="*", cast=Csv())
+ALLOWED_HOSTS = "*"
 
 
 INSTALLED_APPS = [
@@ -137,9 +137,9 @@ TINYMCE_DEFAULT_CONFIG = {
 # I18N AND L10N SETTINGS
 # ==============================================================================
 
-LANGUAGE_CODE = config("LANGUAGE_CODE", default="en-us")
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = config("TIME_ZONE", default="UTC")
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
