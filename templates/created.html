@@ -1,0 +1,342 @@
+{% extends "base.html" %}
+{% load static %}
+{% static "img" as baseUrl %}
+{% block title %}
+<title>OCTOPUS-CONSULTING </title>
+{% endblock %}
+{% block style_css %}
+  
+{% endblock style_css %}
+<style>
+	.content {
+    min-height: 200px;
+    padding: 30px 0 0;
+}
+.invoice-content {
+    background-color: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    padding: 30px;
+}
+.invoice-item .invoice-logo {
+    margin-bottom: 30px;
+}
+.invoice-item .invoice-logo img {
+    width: auto;
+    max-height: 100px;
+}
+.invoice-item .invoice-details {
+    text-align: right;
+    color: #757575;
+    font-weight: 500;
+}
+.invoice-item .invoice-details strong {
+    color: #272b41;
+}
+.invoice-info {
+    margin-bottom: 30px;
+}
+.invoice-item .customer-text {
+    font-size: 18px;
+    color: #272b41;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+.invoice-item .invoice-details-two {
+    text-align: left;
+}
+.invoice-info.invoice-info2 {
+    text-align: right;
+}
+.invoice-item .customer-text {
+    font-size: 18px;
+    color: #272b41;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+.table thead {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+.table thead tr th {
+    background-color: #ffffff;
+    color: #000000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.table tbody tr {
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.invoice-table tr td, .invoice-table-two tr td {
+    color: #757575;
+    font-weight: 500;
+}
+.table tbody tr:last-child {
+    border-color: transparent;
+}
+.invoice-table-two {
+    margin-bottom: 0;
+}
+.table {
+    color: #272b41;
+    max-width: 100%;
+    margin-bottom: 0;
+    width: 100%;
+}
+.other-info {
+    margin-top: 10px;
+}
+.h4, h4 {
+    font-size: 1.125rem;
+}
+@media (min-width: 992px) {
+    .offset-lg-2 {
+        margin-left: 16.666667%;
+    }
+    .col-lg-8{
+        max-width: 66.666667%;
+    }
+}
+.invoice-table tr th, .invoice-table tr td, .invoice-table-two tr th, .invoice-table-two tr td {
+    color: #272b41;
+    font-weight: 600;
+    padding: 10px 20px;
+    line-height: inherit;
+}
+</style>
+{% block content %}
+
+	<section class="order_details section_gap mb-5">
+		<div class="container">
+			<h3 class="title_confirmation">Merci, Votre commande a été effectué avec succée.</h3>
+			<div class="row order_d_inner">
+				<div class="col-lg-6">
+					<div class="details_item">
+						<h4>Commande Infos</h4>
+						<ul class="list">
+							<li><a href="#"><span>Commande Numéro </span> : {{ order.id }}</a></li>
+							<li><a href="#"><span>Date</span> : {{order.created}}</a></li>
+							<li><a href="#"><span>Total</span> : {{ order.get_total_cost }} DA</a></li>
+							<li><a href="#"><span>Livraison</span> : {{ order.delivery_cost }} </a></li>
+							{% if order.get_discount > 0 %}
+								<li><a href="#"><span>Livraison</span> : {{ order.get_discount }} </a></li>
+							{% endif %}
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="details_item">
+						<h4>Livraison info</h4>
+						<ul class="list">
+							<li><a href="#"><span>Wilaya</span>  : {{ order.wilaya }} </a></li>
+							<li><a href="#"><span>Commune</span> : {{ order.commune }} </a></li>
+							<li><a href="#"><span>Adresse</span> : {{ order.address }} </a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="order_details_table mb-5">
+				<h2>Commande Details</h2>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Produit</th>
+								<th scope="col">Quantité</th>
+								<th scope="col">Total</th>
+							</tr>
+						</thead>
+						<tbody>
+						{% for item in order.items.all %}
+							<tr>
+								<td><p>{{ item.product.name }}</p></td>
+								<td><h5>x {{ item.quantity }}</h5></td>
+								<td><p> {{ item.price }} DA</p></td>
+							</tr>
+						{% endfor %}
+							<tr>
+								<td>
+									<h4>Sous-Total</h4>
+								</td>
+								<td>
+									<h5></h5>
+								</td>
+								<td>
+									<p>{{ order.get_total_cost }} DA</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<h4>Livraison</h4>
+								</td>
+								<td>
+									<h5></h5>
+								</td>
+								<td>
+									<p>{{order.delivery_cost}} DA</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<h4>Total</h4>
+								</td>
+								<td>
+									<h5></h5>
+								</td>
+								<td>
+									<p>{{ order.get_total_cost }}</p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+    <!--================End Cart Area =================-->
+
+
+	{% block content %}
+	<!-- Page Content -->
+	<div class="content">
+	 <div class="container-fluid">
+		 <div class="row">
+			 <div class="col-lg-8 offset-lg-2" >
+				 <div class="invoice-content">
+					 <div class="invoice-item">
+						 <div class="row">
+							 <div class="col-md-6">
+								 <div class="invoice-logo">
+									 <img src="{{business.logo.url}}"  alt="logo">
+								 </div>
+							 </div>
+							 <div class="col-md-6">
+								 <p class="invoice-details">
+									 <strong>Commande:</strong> #{{order.id}} <br>
+									 <strong>Date:</strong> {{order.created}}
+								 </p>
+							 </div>
+						 </div>
+					 </div>
+					 
+					 <!-- Invoice Item -->
+					 <div class="invoice-item">
+						 <div class="row">
+							 <div class="col-md-6">
+								 <div class="invoice-info">
+									 <strong class="customer-text">Facture De</strong>
+									 <p class="invoice-details invoice-details-two">
+										 {{business.name}} <br>
+										 {{business.adress}} <br>
+									 </p>
+								 </div>
+							 </div>
+							 <div class="col-md-6">
+								 <div class="invoice-info invoice-info2">
+									 <strong class="customer-text">A l'ordre de </strong>
+									 <p class="invoice-details">
+										 {{order.first_name}} {{order.last_name}}<br>
+										 {{order.adress}}, <br>
+										 {% if order.email %}
+										  {{order.email}}   <br>
+										 {% endif %}
+										 {% if order.phone %}
+										  {{order.phone}}   <br>
+										 {% endif %}
+									 </p>
+								 </div>
+							 </div>
+						 </div>
+					 </div>
+					 <div class="invoice-item">
+						 <div class="row">
+							 <div class="col-md-12">
+								 <div class="invoice-info">
+									 <strong class="customer-text">Articles acheté :</strong>
+								 </div>
+							 </div>
+						 </div>
+					 </div>
+					 <!-- /Invoice Item -->
+					 
+					 <!-- Invoice Item -->
+					 <div class="invoice-item invoice-table-wrap">
+						 <div class="row">
+							 <div class="col-md-12">
+								 <div class="table-responsive">
+									 <table class="invoice-table table table-bordered">
+										 <thead>
+											 <tr>
+												 <th>Description</th>
+												 <th class="text-center">Quantité</th>
+												 {% comment %}
+												 	<th class="text-center">Atributs</th>
+												 {% endcomment %}
+												 <th class="text-right">Total <small>(DA)</small></th>
+											 </tr>
+										 </thead>
+										 <tbody>
+											 {% for item in order.items.all %}
+												 <tr>
+													 <td>{{item.product}}</td>
+													 <td class="text-center">{{item.quantity}}</td>
+												{% comment %}
+													<td class="text-center">
+														<ul>
+															{% if item.attribute_1 %}
+																<li>{{item.attribute_1}}</li>
+															{% endif %}
+															{% if item.attribute_2 %}
+																<li>{{item.attribute_2}}</li>
+															{% endif %}
+															{% if item.attribute_3 %}
+																<li>{{item.attribute_3}}</li>
+															{% endif %}
+														</ul>
+													</td>
+												{% endcomment %}
+													 <td class="text-right">{{item.get_cost}}</td>
+												 </tr>
+											 {% endfor %}
+										 </tbody>
+									 </table>
+								 </div>
+							 </div>
+							 <div class="col-md-6 col-xl-4 ml-auto">
+								 <div class="table-responsive">
+									 <table class="invoice-table-two table">
+										 <tbody>
+										 <tr>
+											 <th>Subtotal:</th>
+											 <td><span>$350</span></td>
+										 </tr>
+										 <tr>
+											 <th>Discount:</th>
+											 <td><span>-10%</span></td>
+										 </tr>
+										 <tr>
+											 <th>Total Amount:</th>
+											 <td><span>$315</span></td>
+										 </tr>
+										 </tbody>
+									 </table>
+								 </div>
+							 </div>
+						 </div>
+					 </div>
+					 <div class="other-info">
+						 <h4>Other information</h4>
+						 <p class="text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed dictum ligula, cursus blandit risus. Maecenas eget metus non tellus dignissim aliquam ut a ex. Maecenas sed vehicula dui, ac suscipit lacus. Sed finibus leo vitae lorem interdum, eu scelerisque tellus fermentum. Curabitur sit amet lacinia lorem. Nullam finibus pellentesque libero.</p>
+					 </div>
+				 </div>
+			 </div>
+		 </div>
+
+	 </div>
+
+ </div>		
+ <!-- /Page Content -->
+{% endblock %}
+{% endblock content %}

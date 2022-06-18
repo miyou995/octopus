@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+<title>OCTOPUS-CONSULTING | Contact</title>
+{% endblock %}
+{% block content %}
+        <!-- Start Breadcrump Area  -->
+        <div class="rn-page-title-area pt--120 pb--190 bg_image bg_image--1" data-black-overlay="5" style="background-image: url({% static 'images/bg-contact.png' %});">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb-inner pt--100 pt_sm--40 pt_md--50">
+                            <h2 class="title">CONTACTEZ-NOUS</h2>
+                            <p style="color:#fff;">Nous vous recontacterons dans les 48H pour échanger sur votre projet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrump Area  -->
+        <!-- Start Page Wrapper  -->
+        <main class="page-wrapper">
+            <div class="rn-contact-address-area rn-section-gap bg_color--5">
+                <div class="container">
+                    <div class="row mt_dec--40">
+                        <!-- Start Single Address  -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12 mt--40">
+                            <div class="rn-address">
+                                <div class="icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="inner">
+                                    <h4 class="title">Contactez nous par téléphone</h4>
+                                    <p><a href="tel:{{business.phone}}">{{business.phone}}</a></p> <br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12 mt--40">
+                            <div class="rn-address">
+                                <div class="icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="inner">
+                                    <h4 class="title">Addresse Email </h4>
+                                    <p><a href="mailto:{{business.email}}">{{business.email}}</a></p><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12 mt--40">
+                            <div class="rn-address">
+                                <div class="icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="inner">
+                                    <h4 class="title">Localisation</h4>
+                                    
+                                    <p><a href="#section-map">{{business.adress}}</a></p><br>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rn-contact-area rn-section-gap bg_color--1">
+                <div class="contact-form--1">
+                    <div class="container">
+                        <div class="row row--35 align-items-start">
+                            <div class="col-lg-6 order-2 order-lg-1">
+                                <div class="section-title text-left mb--50 mb_sm--30 mb_md--30">
+                                    <h2 class="title">Contactez nous.</h2>
+                                    <p class="description">Nous vous recontacterons dans les 48H pour échanger sur votre projet. Entrer en contact avec nous par téléphone:
+                                        <a href="tel:{{business.phone}}">{{business.phone}}</a> ou email:
+                                        <a href="mailto:{{business.email}}"> {{business.email}}</a> </p>
+                                </div>
+                                <div class="form-wrapper">
+                                    <div id="messageContact">
+                                        {% if messages %}
+                                            {% include 'snippets/message.html' %}
+                                        {% endif %}
+                                    </div>  
+                                    <form  action="{% url 'core:contact' %}" method="post">
+                                        {% csrf_token %}
+                                        <input name="name"id="id_name"  type="text" placeholder="Votre nom*" required />
+                                        <input name="email" id="id_email" type="email" placeholder="Votre e-mail *">
+                                        <input name="phone" id="id_phone" type="phone" placeholder="Votre numéro de téléphone *">
+                                        <input name="subject" id="id_subject" type="text" placeholder="Sujet">
+                                        <textarea name="message" id="id_message" placeholder="Votre Message"></textarea>
+                                        <button type="submit" class="rn-button-style--2 btn_solid">
+                                            <span>Envoyer le message</span>
+                                        </button>
+                                    </form>
+                                    {% comment %} <div class="form-output">
+                                        <p class="form-messege-active form-messege"></p>
+                                    </div> {% endcomment %}
+                                </div>
+                            </div>
+                            <div class="col-lg-6 order-1 order-lg-2"> 
+                                <div class="mb_md--40 mb_sm--40">
+                                    <img src="{% static "images/contact.png" %}" alt="trydo"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="section-map" class="rn-brand-area brand-separation rn-section-gap">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3207.950605110489!2d2.8062816156271007!3d36.48290909319468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128f0dde61df1af3%3A0xb7fbfe86f236ee81!2sOctopus%20Consulting%20Digital%20Growth%20Agency!5e0!3m2!1sen!2sdz!4v1632671230887!5m2!1sen!2sdz"  style="border:0;width: 100%;height: 550px ;" allowfullscreen="true" loading="lazy"></iframe>
+            </div>
+        </main>
+{% endblock content %}

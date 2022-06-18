@@ -1,0 +1,380 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+<title>OCTOPUS-CONSULTING | Services</title>
+{% endblock %}
+{% block content %}
+<main class="page-wrapper">
+    <!-- Start Slider Area  -->
+    <div class="slider-wrapper">
+        <div class="slide designer-portfolio slider-style-3  d-flex align-items-center justify-content-center rn-slider-height bg_image bg_image--1" data-black-overlay="5" style="background-image: url({% static 'images/bg-contact.png' %});" style="background-color: #233774; height: 100vh;">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 mt_md--40 mt_sm--40">
+                        <div class="inner text-left "><span  style="color: #ffffff;">{{service.category}}</span>
+                            <h1 class="service-title title" style="color: #EDBF47;">{{service.name}}<br></h1>
+                        </h1>
+                        <h3  style="color: #ffffff; font-size: 2rem;">{{service.title}}</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                    {% if service.image %}
+                    
+                        <div class="designer-thumbnail "><img src="{{service.image.url}}"  class=" float-right" alt="Slider Images"></div>
+                    {% else %}
+                    
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- hruhrorhg -->
+    {% if request.path == "/services/e-commerce/" %}
+
+                <!-- Start About Area  -->
+                <div class="about-area rn-section-gap bg_color--1">
+                    <div class="about-wrapper">
+                        <div class="container">
+                            <div class="row row--35">
+                                <div class="col-lg-5">
+                                    <div class="thumbnail">
+                                        <img class="w-100" src="{% static "images/marchesa.png" %}" alt="About Images" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 mt-3">
+                                    <div class="about-inner inner">
+                                        <div class="section-title">
+                                            <h2 class="title">Ce que nous vous offrons</h2>
+                                            <p class="description">Obtenez un site e-commerce sur mesure : Choisissez les options que vous souhaitez et le design qui vous plaît.
+                                            </p>
+                                        </div>
+                                        <div class="row mt--30">
+                                            <div class="col-lg-12">
+                                                <!-- <ul class="nav nav-tabs tab-style--1" id="myTab2" role="tablist">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active" id="history" data-toggle="tab" href="#rn-history" role="tab" aria-controls="history" aria-selected="true">Avantages</a>
+                                                    </li>
+                                                    
+                                                </ul> -->
+                                                <div class="tab-content" id="myTabContent2">
+                                                    <div class="tab-pane fade show active" id="rn-history" role="tabpanel" aria-labelledby="history">
+                                                        <div class="single-tab-content">
+                                                            <p>
+                                                                un site e-commerce sur mesures, avec les outils de gestion adaptés pour chaque business, de multiples choix sont possibles, et un design entièrement personnalisable. Vous ainsi il vous est possible de :
+                                                            </p>
+                                                            <div class="list0style-inner mt--30">
+                                                                <h4>Avantages</h4>
+                                                                <ul class="list-style--1">
+                                                                    <li><i data-feather="check"></i>Boutique personnalisée</li>
+                                                                    <li><i data-feather="check"></i>Automatiser votre boutique</li>
+                                                                    <li><i data-feather="check"></i>Améliorer votre processus de vente</li>
+                                                                    <li><i data-feather="check"></i>Eviter que vos clients soient dépendants du lieu</li>
+                                                                    <li><i data-feather="check"></i>Vous dinstinguer de vos concurrents</li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End About Area  -->
+
+
+        <div class="section-title service-style--3 text-center mb--25 pt--60 ">
+            <h2 class="title">Offres E-commerce </h2>
+            <p>Offrez-vous votre propre boutique en ligne qui gère le côté business pour vous.</p>
+            <br>
+            {% comment %} <ul class="tg-list">
+                <li class="tg-list-item mr-lg-3"><p>Mois</p></li>
+                <li class="tg-list-item">
+                    <input class="tgl tgl-ios" id="cb2" type="checkbox" />
+                    <label class="tgl-btn" for="cb2"></label>
+                </li>
+                <li class="tg-list-item"><p>Année</p></li>
+            </ul> {% endcomment %}
+            </div>
+    <div class="rn-pricing-table-area pt--60 bg_color--5">
+    <div class="container-fluid">
+    <div class="rn-pricing-table-area pt--60 bg_color--5">
+    <div class="container-fluid">
+        <div class="reseller_hosting_plan">
+            <ul class="reseller_hosting_plan_list">
+                {% for offer in offers %}
+                <li {% if forloop.counter == 1 %}class="active"{% endif %}>
+                    <button>{{offer.title}}</button>
+                </li>
+               
+                {% endfor %}
+            </ul>
+            <table class="reseller_hosting_plan_table">
+                <thead>
+                    <tr>
+                        <th class="hide"></th>
+                        <th class="default" style="display: none;">Basic</th>
+                        <th style="display: none;">Business</th>
+                        <th class="">Standard</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="chars" colspan="1">Fonctionnalitées</td>
+                    </tr>
+                    <tr>
+                        <td class="bAcheter_none"></td>
+                {% for offer in offers %}
+                    <td class="bg_3e7ccc center offers-header" style="display: none;">
+                        <div class="reseller_plan_price ">{{offer.title}}</div>
+                        <div class="small_content" id="basic-price" data-mois="{{offer.price_month}} DA Par mois" data-annee="{{offer.price_year}}  DA Par An" > {{offer.price_month}}  DZD Par mois  </div>
+                        <div class="small_content">{{offer.description}}</div>
+                        {% comment %} <button type="button" class="btn__trial" ><span class="css-j8fq0c"><span class="css-t5emrf"><a href='tel:{{business.phone}}'>CHOISIR</a></span></span></button>                 {% endcomment %}
+                    </td>
+                {% endfor %}
+
+                      
+                    </tr>
+                    {% for fonctionalite in fonctionalities %}
+                        <tr>
+                            <td>{{fonctionalite.title}}</td>
+                            {% comment %} <td>{{fonctionalite.status.all}}</td> {% endcomment %}
+                                {% for stat in fonctionalite.status.all %}
+                                    {% if stat.quantity %}
+                                        <td class="text-black font-weight-bold">{{stat.quantity}}</td>
+                                    {% elif stat.included %}
+                                        <td class="text-success font-weight-bold">✓</td>
+                                    {% else %}
+                                        <td class="font-weight-bold text-danger">✗</td>
+                                    {% endif %}
+                                {% endfor %}
+                            {% comment %} <td class="text-success font-weight-bold">✓</td>
+                            <td class="text-success font-weight-bold">✓</td> {% endcomment %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+    {% comment %} <div class="reseller_hosting_plan">
+        <ul class="reseller_hosting_plan_list">
+
+            <li class="active">
+                <button>Starter</button>
+            </li>
+            <li>
+                <button>Business</button>
+            </li>
+            <li class="">
+                <button>Advanced</button>
+            </li>
+        </ul>
+        <table class="reseller_hosting_plan_table">
+            <thead>
+                <tr>
+                    <th class="hide"></th>
+                    <th class="default">Basic</th>
+                    <th>Business</th>
+                    <th class="">Standard</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="chars" colspan="1">Fonctionnalitées</td>
+                </tr>
+                <tr>
+                    <td class="bAcheter_none">Fonctionnalitées</td>
+                    <td class="bg_3e7ccc center offers-header" style="display:table-cell">
+                        <div class="reseller_plan_price ">Starter</div>
+                        <div class="small_content" id="basic-price" data-mois="4000 DA Par mois" data-annee="48 000 DA Par An" >4000 DA Par mois</div>
+                        <div class="small_content">Pour des entreprises de taille moyenne</div>
+                        <button type="button" class="btn__trial" ><span class="css-j8fq0c"><span class="css-t5emrf"><a href='tel:{{business.phone}}'>CHOISIR</a></span></span></button>                
+                    </td>
+                    <td class=" bg_3e7ccc center offers-header">
+                        <div class="reseller_plan_price">Business</div>
+                        <div class="small_content"id="business-price" data-mois="7000 DA Par mois" data-annee="84 000 DA Par An">7000 DA Par Mois</div>
+                        <div class="small_content">Pour une entreprise établie</div>
+                        <button type="button" class="btn__trial" ><span class="css-j8fq0c"><span class="css-t5emrf"><a href='tel:{{business.phone}}'>CHOISIR</a></span></span></button>                
+                    </td>
+                    <td class="bg_3e7ccc center offers-header">
+                        <div class="reseller_plan_price">Advanced</div>
+                        <div class="small_content" id="advanced-price" data-mois="19 000 DA Par mois" data-annee="228 000 DA Par An">19 000 DA Par Mois</div>
+                        <div class="small_content">Pour une grande entreprise</div>
+                        <button type="button" class="btn__trial" ><span class="css-j8fq0c"><span class="css-t5emrf"><a href='tel:{{business.phone}}'>CHOISIR</a></span></span></button>
+                    </td>
+                    <td class="bg_3e7ccc center offers-header">
+                        <div class="reseller_plan_price">Presonnalisé</div>
+                        <div class="small_content" id="advanced-price">sur devis</div>
+
+                        <div class="small_content">Votre boutique sur mesure</div>
+                        <button type="button" class="btn__trial" ><span class="css-j8fq0c"><span class="css-t5emrf"><a href='tel:{{business.phone}}'>CHOISIR</a></span></span></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>E-Boutique</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                </tr>
+                <tr>
+                    <td>Panier</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                </tr>
+                <tr>
+                    <td>Achat direct ( sans panier )</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                </tr>
+                <tr>
+                    <td>Admin</td>
+                    <td class="default">5</td>
+                    <td>20</td>
+                    <td>Illimité</td>
+                </tr>
+                <tr>
+                    <td>Produits</td>
+                    <td>500 </td>
+                    <td class="default">3000</td>
+                    <td>Illimité</td>
+                </tr>
+                <tr>
+                    <td>Traitement automatique des commandes</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                </tr>
+                <tr>
+                    <td>Facebook pixel</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                </tr>
+                <tr>
+                    <td>Generateur de factures</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                </tr>
+                <tr>
+                    <td>Gestion des promotions</td>
+                    <td class="font-weight-bold text-danger">✗</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                </tr>
+                <tr>
+                    <td>Gestion avancée des produits (variants)</td>
+                    <td class="text-danger font-weight-bold">✗</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                </tr>
+                <tr>
+                    <td>Gestion de stock</td>
+                    <td class="text-danger font-weight-bold">✗</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                </tr>
+                <tr>
+                    <td>Gestion de Livraison</td>
+                    <td class="text-danger font-weight-bold">✗</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                </tr>
+                <tr>
+                    <td>Chat instantané</td>
+                    <td class="text-danger font-weight-bold">✗</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                </tr>
+                <tr>
+                    <td>Offre Flash</td>
+                    <td class="text-danger font-weight-bold">✗</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                </tr>
+                <tr>
+                    <td>Coupons</td>
+                    <td class="text-danger font-weight-bold">✗</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                </tr>
+                <tr>
+                    <td>Carte cadeau</td>
+                    <td class="text-danger font-weight-bold">✗</td>
+                    <td class="text-danger font-weight-bold">✗</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                </tr>
+                <tr>
+                    <td>Compte client</td>
+                    <td class="text-danger font-weight-bold">✗</td>
+                    <td class="text-danger font-weight-bold">✗</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                </tr>
+                <tr>
+                    <td>Newsletter</td>
+                    <td class="text-danger font-weight-bold">✗</td>
+                    <td class="text-danger font-weight-bold">✗</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                </tr>
+                <tr>
+                    <td>Tableau de board</td>
+                    <td class="text-danger font-weight-bold">✗</td>
+                    <td class="text-danger font-weight-bold">✗</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                </tr>
+                <tr>
+                    <td>Interface admin premium</td>
+                    <td class="text-danger font-weight-bold">✗</td>
+                    <td class="text-danger font-weight-bold">✗</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                </tr>
+                <tr>
+                    <td>Recommandation de produit automatique</td>
+                    <td class="text-danger font-weight-bold">✗</td>
+                    <td class="text-danger font-weight-bold">✗</td>
+                    <td class="text-success font-weight-bold">✓</td>
+                </tr>
+                <tr>
+                </tr>
+            </tbody>
+        </table>
+    </div> {% endcomment %}
+    </div>
+    </div>
+
+    
+{% else %}
+    <div class="rn-portfolio-details ptb--120 bg_color--1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="portfolio-details">
+                        <div class="inner decorated">
+                            <h2 class="m-3">{{service.name}}</h2>
+                            <div>
+                                {{service.description|safe}}
+                            </div>
+                            <div class="service-btn mt--30">
+                                <a class="btn-transparent rn-btn-dark" href="{% url 'core:contact' %}"><span class="text">Un projet ? Contactez-Nous!</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endif %}
+</main>
+{% endblock content %}
+  

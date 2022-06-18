@@ -1,0 +1,123 @@
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body {
+                font-family:Helvetica, sans-serif;
+                color:#222;
+                line-height:1.5;
+            }
+            
+            table {
+                width:100%;
+                border-spacing:0;
+                border-collapse: collapse;
+                margin:20px 0;
+            }
+            
+            table th, table td {
+                text-align:left;
+                font-size:14px;
+                padding:10px;
+                margin:0;
+            }
+            
+            tbody tr:nth-child(odd) {
+                background:#efefef;
+            }
+            
+            thead th, tbody tr.total {
+                background: #15161D;
+                color:#fff;
+                font-weight:bold;
+            }
+            
+            h1 {
+                margin:0;
+                color: #dfa667;
+                text-transform: uppercase;
+                  
+            }
+            
+            
+            .secondary {
+                color:#bbb;
+                margin-bottom:20px;
+            }
+            
+            .num {
+                text-align:right;
+            }
+            
+            .paid, .pending {
+                color:#184d47;
+                border:4px solid #184d47;
+                text-transform:uppercase;
+                font-weight:bold;
+                font-size:22px;
+                padding:4px 12px 0px;
+                float:right;
+                transform: rotate(-15deg);
+                margin-right:40px;
+            }
+            .pending {
+                color:#c64756;
+                border:4px solid #c64756;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>{{business}}</h1>
+        <p>
+            Commande Numéro° {{ invoice.id }} <br>
+            <span class="secondary"> {{ invoice.created|date:"M d, Y" }} </span>
+        </p>
+        <h3>A l'ordre de </h3>
+        <p>
+            Monsieur/ Madame: {{ invoice.first_name }} {{ invoice.last_name }}<br>
+            Email: {{ invoice.email }}<br>
+            Adresse: {{ invoice.addresse }}<br>
+            Wilaya: {{ invoice.wilaya.name }}<br>
+            Commune: {{ invoice.commune.name }} <br>
+            Livraison: {{invoice.delivery}} <br>
+            {% if invoice.coupon %}
+            Coupon: {{invoice.coupon.code}} <br>
+            Réduction: {{invoice.discount_amount}} DA
+            {% endif %}
+        </p>
+        <h3>Articles acheté :</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Prix</th>
+                    <th>Quantité</th>
+                    <th>Total produit</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in invoice.items.all %}
+                    <tr class="row{% cycle '1' '2' %}">
+                        <td>{{ item.product.name }}</td>
+                        <td class="num">{{ item.price }} DA</td>
+                        <td class="num">{{ item.quantity }}</td>
+                        <td class="num">{{ item.get_cost }} DA</td>
+                    </tr>
+                {% endfor %}
+                <tr class="total">
+                    {% if invoice.coupon %}
+                    <td colspan="3">Total après réduction</td>
+                    <td class="num">{{ invoice.get_total_cost}} DA</td>
+                    {% else %}
+                    <td colspan="3">Total</td>
+                    <td class="num">{{ invoice.get_total_cost}} DA</td>
+                    {% endif %}
+                </tr>
+            </tbody>
+        </table>
+        <span class="{% if invoice.paid %}paid{% else %}pending{% endif %}">
+            {% if invoice.paid %}Payée{% else %}Non payée{% endif %}
+        </span>
+   </body>
+   </html>

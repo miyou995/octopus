@@ -1,0 +1,399 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% get_language_info_list for LANGUAGES as languages %}
+<!doctype html>
+{% block title %}
+<title>OCTOPUS-CONSULTING</title>
+{% endblock %}
+<html class="no-js" lang="{{LANGUAGES}}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>{% trans "Octopus Consulting | Agence de marketing digital" %}</title>
+        <meta name="robots" content="noindex, follow" />
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="{% static "images/logo/favicon.png" %}">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta name="keywords" content="branding, consulting, audit, business consulting" />
+        <meta name="description" content="{% trans "Octopus consulting, une agence de croissance numérique qui accompagne les entreprises à développer une stratégie digitale adaptée à leur activité." %}" />
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="{{LANGUAGES}}" />
+        <meta content="Octopus Consulting" name="author" />
+        <meta property="og:url" content="https://www.octopus-consulting.com/" />
+        <meta property="og:title" content="{% trans "Octopus consulting, une agence de croissance numérique qui accompagne les entreprises à développer une stratégie digitale adaptée à leur activité." %}" />
+        <meta property="og:type" content="Services" />
+        <meta property="og:site_name" content="{% trans "Octopus Consulting | Agence de marketing digital" %}" />
+    
+        <!-- CSS
+        ============================================ -->
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static "css/vendor/bootstrap.min.css" %}">
+        <link rel="stylesheet" href="{% static "css/vendor/fontawesome.css" %}">
+        <link rel="stylesheet" href="{% static "css/vendor/lightbox.css" %}">
+        <link rel="stylesheet" href="{% static "css/plugins/plugins.css" %}">
+        <link rel="stylesheet" href="{% static "css/style.css" %}">
+        {% if business.tag_header %}
+            {{business.tag_header|safe}}
+        {% endif %}
+        {% if business.pixel %}
+            {{business.pixel|safe}}
+        {% endif %}
+        {% if business.analytics %}
+            {{business.analytics|safe}}
+        {% endif %}
+        {% if business.analytics2 %}
+            {{business.analytics2|safe}}
+        {% endif %}
+    </head>
+<body>
+    {% if business.tag_body %}
+        {{business.tag_body|safe}}
+    {% endif %}
+    <div class="main-page">
+        <!-- Start Header -->
+        <header class="header-area formobile-menu header--transparent black-logo-version header--sticky">
+            <div class="header-wrapper" id="header-wrapper">
+                
+                <div class="header-left">
+                    <div class="logo">
+                        <a href="{% url 'core:index' %}">
+                            <img class="light-logo" src="{% static "images/logo/logo.png" %}" alt="Creative Agency Logo">
+                            <img class="dark-logo d-none" src="{% static "images/logo/light-logo.png" %}" alt="Creative Agency Logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="mainmenunav d-lg-block">
+                        <!-- Start Mainmanu Nav -->
+                        <nav class="main-menu-navbar mr-4">
+                            <ul class="mainmenu">
+                                <li class="">
+                                    <a href="{% url 'core:index' %}">ACCEUIL</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'core:services' %}">SERVICES</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'core:articles' %}">BLOG</a>
+                                </li>
+                                <!-- <li class="has-droupdown">
+                                    <a href="service.html">Solutions</a>
+                                    <ul class="submenu">
+                                        <li><a class="text-capitalize" href="service.html">Gym Managment</a></li>
+                                        <li><a class="text-capitalize" href="service-details.html">School Managment</a></li>
+                                        <li><a class="text-capitalize" href="service-details.html">E-Commerce</a></li>
+                                        <li><a class="text-capitalize" href="service-details.html">CRM</a></li>
+                                    </ul>
+                                </li> -->
+                                <!-- <li>
+                                    <a href="contact.html">Formations</a>
+                                </li>
+                                -->
+                                <li>
+                                    <a href="{% url 'core:contact' %}">CONTACT</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!-- End Mainmanu Nav -->
+                    </div>
+                    <div class="social-share-inner">
+                        <ul class="social-share social-style--2 color-black d-flex justify-content-start liststyle">
+                            {% if business.facebook %}
+                                <li ><a href="{{business.facebook}}" target="_blank"><i class="remove-yellow yellow fab fa-facebook-f"></i></a></li>
+                            {% endif %}
+                            {% if business.linkedin %}
+                                <li ><a href="{{business.linkedin}}" target="_blank"><i class="remove-yellow yellow fab fa-linkedin-in"></i></a></li>
+                            {% endif %}
+                            {% if business.insta %}
+                                <li ><a href="{{business.insta}}" target="_blank"><i class="remove-yellow yellow fab fa-instagram"></i></a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    
+                    <div class="header-btn">
+                        {% comment %} <a class="rn-btn"href="tel:0672606639">
+                            <span>Service Client</span>
+                        </a> {% endcomment %}
+                    </div>
+                    <!-- Start Humberger Menu  -->
+                    <div class="humberger-menu d-block d-lg-none pl--20">
+                        <span class="menutrigger text-white">
+                    <i data-feather="menu"></i>
+                </span>
+                    </div>
+                    <!-- End Humberger Menu  -->
+                    <!-- Start Close Menu  -->
+                    <div class="close-menu d-block d-lg-none">
+                        <span class="closeTrigger">
+                    <i data-feather="x"></i>
+                </span>
+                    </div>
+                    <!-- End Close Menu  -->
+                </div>
+            </div>
+        </header>
+
+        <!-- Start Page Wrapper  -->
+            {% block content %}
+            
+            {% endblock content %}
+            <footer class="footer-area footer-default">
+                <div class="footer-wrapper">
+                    <div class="row align-items-end row--0">
+                        <div class="col-lg-6">
+                            <div class="footer-left">
+                                <div class="inner">
+                                    <span>vous êtes prêts ?</span>
+                                    <h2>Que le travail<br /> Commence</h2>
+                                        <a class="rn-button-style--2" href="tel:0672606639">
+                                            <span>Service Client</span>
+                                        </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="footer-right" data-black-overlay="6">
+                                <div class="row">
+                                    <div class="col-lg-6 col-sm-6 col-12">
+                                        <div class="footer-widget">
+                                            <h4>Liens Rapides</h4>
+                                            <ul class="ft-link">
+                                                <li><a href="{% url 'core:contact' %}">CONTACT</a></li>
+                                                <li><a href="{% url 'core:services' %}">SERVICES</a></li>
+                                                <li><a href="{% url 'core:articles' %}">BLOG</a></li>
+                                                {% for service in services_footer %}
+                                                <li><a href="{{ service.get_absolute_url }}" style="text-transform:uppercase">{{service.name}}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-6 col-12 mt_mobile--30">
+                                        <div class="footer-widget">
+                                            <h4>Hello !</h4>
+                                            <ul class="ft-link">
+                                                <li><a href="mailto:hello@octopus-consulting.com">hello@octopus-consulting.com</a></li>
+                                                <li><a href="tel:0672606639">0672 606 639</a></li> 
+                                            </ul>
+    
+                                            <div class="social-share-inner">
+                                                <ul class="social-share social-style--2 d-flex justify-content-start liststyle mt--15">
+                                                {% if business.facebook %}
+                                                    <li ><a href="{{business.facebook}}" target="_blank"><i class="remove-yellow yellow fab fa-facebook-f"></i></a></li>
+                                                {% endif %}
+                                                {% if business.linkedin %}
+                                                    <li ><a href="{{business.linkedin}}" target="_blank"><i class="remove-yellow yellow fab fa-linkedin-in"></i></a></li>
+                                                {% endif %}
+                                                {% if business.insta %}
+                                                    <li ><a href="{{business.insta}}" target="_blank"><i class="remove-yellow yellow fab fa-instagram"></i></a></li>
+                                                {% endif %}
+                                                </ul>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        <!-- Start Footer Style Two  -->
+        <div class="footer-style-2 ptb--30 bg_image bg_image--1" data-black-overlay="5" style="background-image: url({% static 'images/bg-contact.png' %});">
+
+            <div class="wrapper plr--50 plr_sm--20">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                        <div class="inner">
+                            <div class="logo text-center text-sm-left mb_sm--20">
+                                <a href="#">
+                                    <img src="{% static "images/logo/logo.png" %}" alt="Logo images" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                        <div class="inner text-center">
+                            <ul class="social-share rn-lg-size d-flex justify-content-center liststyle">
+                            {% if business.facebook %}
+                                <li ><a href="{{business.facebook}}" target="_blank"><i class="remove-yellow yellow fab fa-facebook-f"></i></a></li>
+                            {% endif %}
+                            {% if business.linkedin %}
+                                <li ><a href="{{business.linkedin}}" target="_blank"><i class="remove-yellow yellow fab fa-linkedin-in"></i></a></li>
+                            {% endif %}
+                            {% if business.insta %}
+                                <li ><a href="{{business.insta}}" target="_blank"><i class="remove-yellow yellow fab fa-instagram"></i></a></li>
+                            {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                        <div class="inner text-lg-right text-center mt_md--20 mt_sm--20">
+                            <div class="text">
+                                <p class="mb-0"> Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tout droits resérvé Octopus Consulting </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Style Two  -->
+    </div>
+
+    <!-- JS
+============================================ -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <!-- Modernizer JS -->
+    <script src="{% static "js/vendor/modernizr.min.js" %}"></script>
+    <!-- jQuery JS -->
+    <script src="{% static "js/vendor/jquery.js" %}"></script>
+    <!-- Bootstrap JS -->
+    <script src="{% static "js/vendor/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/vendor/stellar.js" %}"></script>
+    <script src="{% static "js/vendor/particles.js" %}"></script>
+    <script src="{% static "js/vendor/masonry.js" %}"></script>
+    <script src="{% static "js/vendor/stickysidebar.js" %}"></script>
+    <script src="{% static "js/plugins/plugins.min.js" %}"></script>
+    <!-- Main JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+    {% comment %} <script src="{% static 'js/scripts.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static "js/plugins.min.js" %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'js/jquery.bundle.js' %}"></script> {% endcomment %}
+    <script src="https://use.fontawesome.com/46f5d04788.js"></script>
+    <script src="{% static 'js/vendor/vendor.min.js' %}"></script>
+    <script src="{% static 'js/vendor/vendor.js' %}"></script>
+    <script src="{% static 'js/vendor/particles.js' %}"></script>
+
+    <script>
+        particlesJS('particles-js',
+
+            {
+                "particles": {
+                    "number": {
+                        "value": 50,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#ffffff"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 4
+                        },
+                        "image": {
+                            "src": "img/github.svg",
+                            "width": 100,
+                            "height": 100
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 4,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#ffffff",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 6,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "repulse"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 400,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true,
+                "config_demo": {
+                    "hide_card": false,
+                    "background_color": "#b61924",
+                    "background_image": "",
+                    "background_position": "50% 50%",
+                    "background_repeat": "no-repeat",
+                    "background_size": "cover"
+                }
+            }
+
+        );
+    </script>
+
+    {% if business.messenger_script %}
+        {{business.messenger_script|safe}}
+    {% endif %}
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+<title>OCTOPUS-CONSULTING | Blog</title>
+{% endblock %}
+{% block content %}
+<body>
+    <div class="main-page">
+        <div class="rn-page-title-area pt--120 pb--190 bg_image bg_image--1" data-black-overlay="5" style="background-image: url({% static 'images/bg-contact.png' %});">
+        {% comment %} <div class="rn-page-title-area pt--120 pb--190 bg_image bg_image--1" data-black-overlay="7" > {% endcomment %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                    <div class="breadcrumb-inner pt--100 pt_sm--40 pt_md--50">
+                            <h2 class="title">BLOG</h2>
+                          
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrump Area  -->
+        <!-- Start Page Wrapper  -->
+        <main class="page-wrapper">
+
+            <!-- Start Blog Details Area  -->
+            <div class="rn-blog-details pt--110 pb--70 bg_color--1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="inner-wrapper">
+                                <div class="inner">
+                                    <h2 >{{article.title}} </h2>
+                                     <p >{{article.chapo}}</p>
+                                    <div class="thumbnail">
+                                        <img src="{{article.banner.url}}" alt="Blog Images">
+                                    </div>
+                                   {{article.texte_haut|safe}}
+                                   
+                                    <blockquote class="rn-blog-quote">&nbsp;  {{article.quote|safe}}  &nbsp;</blockquote>
+                                      
+                                      {{article.texte_bas|safe}}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Blog Details Area  -->
+
+            <!-- Start Comment Form  -->
+          
+            <!-- End Comment Form  -->
+
+        </main>
+
+    </div>
+
+
+
+</body>
+
+</html>
+{% endblock content %}
